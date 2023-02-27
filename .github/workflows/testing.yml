@@ -3,7 +3,7 @@ name: Test Numpy Loss of Precision
 on: [push, pull_request]
 
 jobs:
-  Unit Test:
+  tests:
     name: OS=${{ matrix.os }}, Python=${{ matrix.python-version }}, Numpy=${{ matrix.numpy-version }}
     runs-on: ${{ matrix.os }}
     strategy:
