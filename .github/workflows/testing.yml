@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   Unit Test:
-    name: OS=${{ matrix.os }}, Python=${{ python-version }}, Numpy=${{ numpy-version }}
+    name: OS=${{ matrix.os }}, Python=${{ matrix.python-version }}, Numpy=${{ matrix.numpy-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
