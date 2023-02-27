@@ -25,6 +25,12 @@ jobs:
         run: |
           pip install "numpy${{ matrix.numpy-version }}" pytest
 
+      - name: Environment information
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -c "import numpy; print(numpy.__version__);"
+          python -c "import numpy; print(numpy.show_runtime())"
+
       - name: Run Tests
         run: |
           pytest test.py
