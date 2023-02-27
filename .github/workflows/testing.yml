@@ -24,7 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install "numpy${{ matrix.numpy-version }}" pytest
+          pip install "numpy${{ matrix.numpy-version }}" pytest threadpoolctl
 
       - name: Environment information
         run: |
