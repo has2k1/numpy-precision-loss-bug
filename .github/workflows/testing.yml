@@ -4,13 +4,14 @@ on: [push, pull_request]
 
 jobs:
   tests:
-    name: OS=${{ matrix.os }}, Python=${{ matrix.python-version }}, Numpy=${{ matrix.numpy-version }}
+    name: Numpy=${{ matrix.numpy-version }}, OS=${{ matrix.os }}, Python=${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
+        numpy-version: ["<1.24", ">=1.24"]
         os: [ubuntu-20.04, ubuntu-22.04, windows-2019, windows-2022, macOS-11, macOS-12]
         python-version: ["3.8", "3.9", "3.10", "3.11"]
-        numpy-version: ["<1.24", ">=1.24"]
 
     steps:
       - name: Checkout Code
@@ -29,6 +30,10 @@ jobs:
         run: |
           python -c "import sys; print(sys.version)"
           python -c "import numpy; print(numpy.__version__);"
+
+      - name: Numpy runtime information
+        if: contains(matrix.numpy-version, '>=1.24')
+        run: |
           python -c "import numpy; print(numpy.show_runtime())"
 
       - name: Run Tests
